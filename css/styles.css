@@ -1,0 +1,88 @@
+body {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  background-color: #e7e7e7;
+}
+
+/* LOGIN */
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  width: 550px;
+  padding: 70px;
+  background-color: #f5f5f5;
+}
+
+/* Resetting default autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.login-container input {
+  width: calc(100% - 10px);
+  padding: 15px;
+  margin-bottom: 20px;
+  border: none;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+.login-container input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+.login-container input:focus {
+  border: none;
+}
+
+.login-container button {
+  width: calc(100% - 10px);
+  padding: 15px;
+  background-color: #2f4d63;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-title {
+  font-size: 24px;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #707070;
+}
+
+/* DASHBOARD */
+
+.container {
+  padding-top: 30px;
+  padding-left: 150px;
+}
+
+.dashboardTitle {
+  font-weight: bold;
+  font-size: 34px;
+  color: #707070;
+  padding-bottom: 35px;
+}
+
+.scoringText {
+  font-weight: bold;
+  font-size: 14px;
+  color: #707070;
+}
+
+.scoringGraph {
+  padding-bottom: 60px;
+}
