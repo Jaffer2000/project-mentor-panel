@@ -48,7 +48,7 @@ var overallData = {
     datasets: [{
         label: 'Overall Score',
         backgroundColor: '#4263EB',
-        data: [100, 60, 35, 20, 10, 5],
+        data: [92, 60, 35, 20, 10, 5]
     }]
 };
 
@@ -71,11 +71,11 @@ var marketingData = {
 };
 
 var judgesTotalData = {
-    labels: ["Round 1", "Round 2", "Round 3"],
+    labels: ["Round 1"],
     datasets: [{
         label: 'Total Score',
         backgroundColor: '#4263EB',
-        data: [30, 50, 70]
+        data: [50]
     }]
 };
 
@@ -98,7 +98,7 @@ var overallChart = new Chart(bestOverallChart, {
             },
             y: {
                 grid: {
-                    display: true // Show horizontal gridlines
+                    display: true, // Show horizontal gridlines
                 }
             }
         }

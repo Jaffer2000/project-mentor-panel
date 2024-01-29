@@ -12,7 +12,7 @@
         <form action="login_process.php" method="post" autocomplete="off">
             <input type="text" id="username" name="username" placeholder="Username" required autocomplete="off">
             <input type="password" id="password" name="password" placeholder="Password" required autocomplete="off">
-            <button type="submit">Login</button>
+            <button type="submit">LOGIN</button>
         </form>
     </div>
 
