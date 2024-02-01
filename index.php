@@ -50,16 +50,17 @@ if (isset($_GET["pagina"])) {
 
 </head>
 
-<body>
 
-    <!-- Header -->
+<body>
+<!-- Header -->
+<?php include ("header.php"); ?>
+    
 
     <div class="content">
         <!--pagina inhoud-->
         <?php include "inhoud/$pagina.php"; ?>
     </div>
-
-    <!--Footer-->
+    
 
 </body>
 
