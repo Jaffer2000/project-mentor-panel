@@ -16,6 +16,16 @@ if ($result && $result->num_rows > 0) {
     // Fetch the data from the result set
     while ($row = $result->fetch_assoc()) {
         
+        $id = $row['id'];
+        $companyname = $row['comp_name'];
+        $productowner = $row['comp_po'];
+        $coach = $row['comp_coach'];
+        $teammembers = $row['comp_members'];
+        $link = $row['comp_link'];
+        $social1 = $row['comp_social1'];
+        $social2 = $row['comp_social2'];
+        $social3 = $row['comp_social3'];
+        $group = $row['company_group'];
             
     }
 } else {
@@ -31,8 +41,6 @@ if ($result && $result->num_rows > 0) {
     <div class="row">
         <div class="col-sm-6">
             <?php
-
-                $companyname = "Bedrijfsnaam";
 
                 echo"<h1>$companyname</h1>";
             
@@ -57,12 +65,6 @@ if ($result && $result->num_rows > 0) {
         <div class="col-sm-6">
             <?php
 
-                $productowner = "product eigenaar";
-                $teammembers = "Test 1, Test 2, Test 3, Test4";
-                $group = "SD/MV 3";
-
-
-
                 echo"<p class=\"companyoverview\">Company Overview: </p>";
                 echo"<br><p>Product owner: $productowner</p>";
                 echo"<br><p>Team members: $teammembers</p>";
@@ -75,10 +77,6 @@ if ($result && $result->num_rows > 0) {
 
             <?php
 
-                $social1 = "instagram";
-                $social2 = "facebook";
-                $social3 = "tik tok";
-
                 echo"<p class=\"companyoverview\">Socials: </p>";
                 echo"<a href=\"$social1\"> $social1</a> <br><br>";
                 echo"<a href=\"$social2\">$social2</a> <br><br>";
@@ -88,4 +86,39 @@ if ($result && $result->num_rows > 0) {
 
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <table>
+    <tbody>
+        <tr>
+            <td colspan="10">Categorie type</td>
+            <td colspan="10">Scoring summary</td>
+        </tr>
+        <tr>
+            <td >Product name</td>
+            <td>Description of product</td>
+            <td>Customer benefits</td>
+            <td>Sprint MVP</td>
+        </tr>
+        <tr>
+            <td>Sprint</td>
+            <td>Keep</td>
+            <td>Problem</td>
+            <td>Try</td>
+        </tr>
+        <tr>
+            <td>Member Name</td>
+            <td>Talents</td>
+            <td>Pitfalls</td>
+            <td>Reflected by other</td>
+            <td>Sprint</td>
+        </tr>
+    </tbody>
+</table>
+
+        </div>
+    </div>
+
+
 </div>

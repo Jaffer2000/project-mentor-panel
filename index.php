@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+
+include "db_config.php"; 
 // Check if the session has not been started
 if (session_status() == PHP_SESSION_NONE) {
     // Start the session
