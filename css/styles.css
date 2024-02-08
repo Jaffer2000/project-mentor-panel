@@ -4,10 +4,27 @@ body {
   background-color: #e7e7e7;
 }
 
-
 /* Nav bar */
 
+.navbar-left-items li {
+  display: flex;
+  align-items: center;
+}
 
+.navbar-left-items li:not(:last-child) {
+  margin-right: 10px;
+  border-right: 1px solid #000;
+  padding-right: 10px;
+}
+
+.navbar-brand {
+  border-right: 1px solid #000;
+  padding-right: 10px;
+}
+
+.no-border {
+  border-right: none !important; /* Override the border-right property */
+}
 
 /* LOGIN */
 

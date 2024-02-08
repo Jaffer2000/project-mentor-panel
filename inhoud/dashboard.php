@@ -100,12 +100,9 @@ if ($resultJudges->num_rows > 0) {
     }
 }
 
-
 // Close the database connection
 $conn->close();
 ?>
-
-
 
 <div class="container">
 
@@ -134,7 +131,6 @@ $conn->close();
             <canvas id="judgesTotalChart" width="800" height="400"></canvas>
         </div>
     </div>
-
 
 </div>
 
