@@ -9,18 +9,15 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if (isset($_GET["pagina"])) {
-    $pagina = $_GET["pagina"];
-} else {
-    // Check if the user is not logged in
-    if (!isset($_SESSION['user_id'])) {
-        // Redirect to the login page
-        $pagina = "login";
-    } else {
-        // User is logged in, set the default page to "dashboard"
-        $pagina = "dashboard";
-    }
+// Check if the user is not logged in
+if (!isset($_SESSION['user_id']) && !isset($_GET['pagina']) && $_GET['pagina'] !== 'login') {
+    // Redirect to the login page
+    header('Location: index.php?pagina=login');
+    exit();
 }
+
+// Set the page variable
+$pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : "dashboard";
 
 ?>
 
@@ -52,17 +49,17 @@ if (isset($_GET["pagina"])) {
 
 </head>
 
-
 <body>
-<!-- Header -->
-<?php include ("header.php"); ?>
-    
-
+    <!-- Header -->
+    <?php 
+    if ($pagina !== 'login') {
+        include("header.php");
+    }
+    ?>
     <div class="content">
         <!--pagina inhoud-->
         <?php include "inhoud/$pagina.php"; ?>
     </div>
-    
 
 </body>
 

@@ -1,25 +1,3 @@
-<style>
-    .navbar-left-items li {
-        display: flex;
-        align-items: center;
-    }
-
-    .navbar-left-items li:not(:last-child) {
-        margin-right: 10px;
-        border-right: 1px solid #000;
-        padding-right: 10px;
-    }
-
-    .navbar-brand {
-        border-right: 1px solid #000;
-        padding-right: 10px;
-    }
-
-    .no-border {
-        border-right: none !important; /* Override the border-right property */
-    }
-</style>
-
 <nav class="navbar navbar-expand-md" style="background: #F5F5F5; ">
     <a class="navbar-brand text-dark" href="index.php?pagina=dashboard">Dashboard</a>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -49,7 +27,7 @@
             </li>
             <li class="nav-item border-right pr-2 no-border">
                 <a class="nav-link text-dark" href="index.php?pagina=test">Judges</a>
-            </li>  
+            </li>
         </ul>
 
         <!-- Right-aligned item -->
@@ -58,5 +36,5 @@
                 <a class="nav-link text-dark" href="logout.php">Log Out</a>
             </li>
         </ul>
-    </div>  
+    </div>
 </nav>

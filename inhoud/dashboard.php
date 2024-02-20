@@ -1,12 +1,108 @@
 <?php
+// Include your database connection file
+require_once 'db_connection.php';
+
 // Check if the user is not logged in, redirect to the login page
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit();
 }
+
+// Initialize arrays to store aggregated scores for each company
+$companyScores = [];
+
+// Fetch data from the database for all scores
+$sqlScores = "SELECT s.score_points, c.comp_name, ct.cat_type 
+              FROM score s
+              INNER JOIN company c ON s.companyId = c.id
+              INNER JOIN category ct ON s.categoryId = ct.id";
+
+$resultScores = $conn->query($sqlScores);
+
+// Fetch and aggregate scores for each company
+if ($resultScores->num_rows > 0) {
+    while ($row = $resultScores->fetch_assoc()) {
+        $compName = $row['comp_name'];
+        $score = $row['score_points'];
+        // Check if the company already exists in the aggregated scores array
+        if (!isset($companyScores[$compName])) {
+            $companyScores[$compName] = 0; // Initialize score for the company
+        }
+        // Add the score to the existing total score for the company
+        $companyScores[$compName] += $score;
+    }
+}
+
+// Convert aggregated scores to labels and scores arrays for the Best Overall chart
+$overallLabels = array_keys($companyScores);
+$overallScores = array_values($companyScores);
+
+
+// Fetch data from the database for the Best Development chart
+$sqlDevelopment = "SELECT s.score_points, c.comp_name, ct.cat_type 
+                   FROM score s
+                   INNER JOIN company c ON s.companyId = c.id
+                   INNER JOIN category ct ON s.categoryId = ct.id
+                   WHERE ct.cat_type = 'development'";
+
+$resultDevelopment = $conn->query($sqlDevelopment);
+
+// Initialize arrays to store data for the Best Development chart
+$developmentLabels = [];
+$developmentScores = [];
+
+// Fetch and format data for the Best Development chart
+if ($resultDevelopment->num_rows > 0) {
+    while ($row = $resultDevelopment->fetch_assoc()) {
+        $developmentLabels[] = $row['comp_name'];
+        $developmentScores[] = $row['score_points'];
+    }
+}
+
+// Fetch data from the database for the Best Marketing chart
+$sqlMarketing = "SELECT s.score_points, c.comp_name, ct.cat_type 
+                  FROM score s
+                  INNER JOIN company c ON s.companyId = c.id
+                  INNER JOIN category ct ON s.categoryId = ct.id
+                  WHERE ct.cat_type = 'marketing'";
+
+$resultMarketing = $conn->query($sqlMarketing);
+
+// Initialize arrays to store data for the Best Marketing chart
+$marketingLabels = [];
+$marketingScores = [];
+
+// Fetch and format data for the Best Marketing chart
+if ($resultMarketing->num_rows > 0) {
+    while ($row = $resultMarketing->fetch_assoc()) {
+        $marketingLabels[] = $row['comp_name'];
+        $marketingScores[] = $row['score_points'];
+    }
+}
+
+// Fetch data from the database for the Judges Total chart
+$sqlJudges = "SELECT comp_name, SUM(judge_q1 + judge_q2 + judge_q3 + judge_q4 + judge_q5 + judge_q6) AS total_score
+              FROM judges j
+              INNER JOIN company c ON j.companyId = c.id
+              GROUP BY comp_name";
+
+$resultJudges = $conn->query($sqlJudges);
+
+// Initialize arrays to store data for the Judges Total chart
+$judgesLabels = [];
+$judgesScores = [];
+
+// Fetch and format data for the Judges Total chart
+if ($resultJudges->num_rows > 0) {
+    while ($row = $resultJudges->fetch_assoc()) {
+        $judgesLabels[] = $row['comp_name'];
+        $judgesScores[] = $row['total_score'];
+    }
+}
+
+// Close the database connection
+$conn->close();
 ?>
-
-
 
 <div class="container">
 
@@ -15,67 +111,73 @@ if (!isset($_SESSION['user_id'])) {
     <div class="row scoringGraph">
         <div class="col-md-12">
             <p class="scoringText">Scoring: Best Overall</p>
-            <canvas id="bestOverallChart" width="1800" height="600"></canvas>
+            <canvas id="bestOverallChart"></canvas>
         </div>
     </div>
 
     <div class="row scoringGraph">
         <div class="col-md-6">
             <p class="scoringText">Scoring: Best Development</p>
-            <canvas id="bestDevelopmentChart" height="200"></canvas>
+            <canvas id="bestDevelopmentChart" width="400"></canvas>
         </div>
         <div class="col-md-6">
             <p class="scoringText">Scoring: Best Marketing</p>
-            <canvas id="bestMarketingChart" height="200"></canvas>
+            <canvas id="bestMarketingChart" width="400"></canvas>
+        </div>
+    </div>
+    <div class="row scoringGraph">
+        <div class="col-md-12">
+            <p class="scoringText">Scoring: Judges Total</p>
+            <canvas id="judgesTotalChart" width="800" height="400"></canvas>
         </div>
     </div>
 
-    <div class="row scoringGraph">
-        <div class="col-md-6">
-            <p class="scoringText">Scoring: Judges Total</p>
-            <canvas id="judgesTotalChart" height="200"></canvas>
-        </div>
-    </div>
 </div>
 
-<!-- Your JavaScript code for initializing and updating charts -->
+<!-- JavaScript code for initializing and updating charts -->
 <script>
+// Pass PHP variables to JavaScript
+var overallLabels = <?php echo json_encode($overallLabels); ?>;
+var overallScores = <?php echo json_encode($overallScores); ?>;
+var developmentLabels = <?php echo json_encode($developmentLabels); ?>;
+var developmentScores = <?php echo json_encode($developmentScores); ?>;
+var marketingLabels = <?php echo json_encode($marketingLabels); ?>;
+var marketingScores = <?php echo json_encode($marketingScores); ?>;
+
 // Example data for the charts
 var overallData = {
-    labels: ["Overall Category 1", "Overall Category 2", "Overall Category 3", "Overall Category 4",
-        "Overall Category 5", "Overall Category 6"
-    ],
+    labels: overallLabels,
     datasets: [{
         label: 'Overall Score',
         backgroundColor: '#4263EB',
-        data: [92, 60, 35, 20, 10, 5]
+        data: overallScores
     }]
 };
 
 var developmentData = {
-    labels: ["Feature A", "Feature B", "Feature C"],
+    labels: developmentLabels,
     datasets: [{
         label: 'Development Score',
         backgroundColor: '#4263EB',
-        data: [10, 60, 90]
+        data: developmentScores
     }]
 };
 
 var marketingData = {
-    labels: ["Campaign X", "Campaign Y", "Campaign Z"],
+    labels: marketingLabels,
     datasets: [{
         label: 'Marketing Score',
         backgroundColor: '#4263EB',
-        data: [15, 25, 60]
+        data: marketingScores
     }]
 };
 
-var judgesTotalData = {
-    labels: ["Round 1"],
+var judgesData = {
+    labels: <?php echo json_encode($judgesLabels); ?>,
     datasets: [{
-        label: 'Total Score',
+        label: 'Judges Total Score',
         backgroundColor: '#4263EB',
-        data: [50]
+        data: <?php echo json_encode($judgesScores); ?>
     }]
 };
 
@@ -113,12 +215,12 @@ var developmentChart = new Chart(bestDevelopmentChart, {
         scales: {
             x: {
                 grid: {
-                    display: true // Show vertical gridlines
+                    display: true // Hide vertical gridlines
                 }
             },
             y: {
                 grid: {
-                    display: false // Hide horizontal gridlines
+                    display: false, // Show horizontal gridlines
                 }
             }
         }
@@ -133,32 +235,32 @@ var marketingChart = new Chart(bestMarketingChart, {
         scales: {
             x: {
                 grid: {
-                    display: true // Show vertical gridlines
+                    display: true // Hide vertical gridlines
                 }
             },
             y: {
                 grid: {
-                    display: false // Hide horizontal gridlines
+                    display: false, // Show horizontal gridlines
                 }
             }
         }
     }
 });
 
-var judgesTotalChart = new Chart(judgesTotalChart, {
+var judgesChart = new Chart(judgesTotalChart, {
     type: 'bar',
-    data: judgesTotalData,
+    data: judgesData,
     options: {
         indexAxis: 'y',
         scales: {
             x: {
                 grid: {
-                    display: true // Show vertical gridlines
+                    display: true // Hide vertical gridlines
                 }
             },
             y: {
                 grid: {
-                    display: false // Hide horizontal gridlines
+                    display: false, // Show horizontal gridlines
                 }
             }
         }

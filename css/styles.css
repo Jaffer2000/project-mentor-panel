@@ -4,6 +4,27 @@ body {
   background-color: #e7e7e7;
 }
 
+/* Nav bar */
+
+.navbar-left-items li {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-left-items li:not(:last-child) {
+  margin-right: 10px;
+  border-right: 1px solid #000;
+  padding-right: 10px;
+}
+
+.navbar-brand {
+  border-right: 1px solid #000;
+  padding-right: 10px;
+}
+
+.no-border {
+  border-right: none !important; /* Override the border-right property */
+}
 
 /* LOGIN */
 
@@ -88,7 +109,7 @@ input:-webkit-autofill:active {
 }
 
 /* Companies */
-.companyoverview{
+.companyoverview {
   font-weight: bolder;
 }
 
@@ -116,10 +137,10 @@ input:-webkit-autofill:active {
   width: 200px; /* Aanpassen aan je eigen voorkeur */
 }
 
-.rowpaddingtopcompanies{
+.rowpaddingtopcompanies {
   padding-top: 5%;
 }
 
-tr{
-  border:  1px solid grey;
+tr {
+  border: 1px solid grey;
 }
