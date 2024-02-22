@@ -108,39 +108,24 @@ input:-webkit-autofill:active {
   padding-bottom: 80px;
 }
 
-/* Companies */
+/* COMPANIES */
+
 .companyoverview {
   font-weight: bolder;
 }
 
-.search-bar {
-  position: relative;
-  display: inline-block;
-}
-
-/* Stijl voor het vergrootglasicoontje */
-.search-icon {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-/* Stijl voor de zoekbalk zelf */
-.search-input {
-  padding: 8px;
-  padding-right: 30px; /* Ruimte laten voor het icoontje aan de rechterkant */
-  border: 1px solid #ccc;
-  border-radius: 18px;
-  outline: none;
-  width: 200px; /* Aanpassen aan je eigen voorkeur */
-}
-
-.rowpaddingtopcompanies {
-  padding-top: 5%;
-}
-
 tr {
   border: 1px solid grey;
+}
+
+.company {
+  padding: 40px 150px;
+}
+
+.companyNameAndDropdown {
+  padding-bottom: 50px;
+}
+
+.companyOverviewAndSocials {
+  padding-bottom: 50px;
 }
