@@ -10,7 +10,7 @@
                     Sprint Review
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item text-dark" href="index.php?pagina=sprintscoring">Scoring</a>
+                    <a class="dropdown-item text-dark" href="index.php?pagina=scoring">Scoring</a>
                     <a class="dropdown-item text-dark" href="index.php?pagina=sprintretrospective">Retrospective</a>
                     <a class="dropdown-item text-dark" href="index.php?pagina=sprintselfreflection">Selfreflection</a>
                 </div>
