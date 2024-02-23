@@ -142,6 +142,13 @@ if ($result && $result->num_rows > 0) {
         $retrospective_query = "SELECT * FROM retrospective WHERE companyId = $selected_company_id";
         $retrospective_result = $conn->query($retrospective_query);
 
+       // Fetch member qualities
+       $member_qualities_query = "SELECT m.mem_name, r.refl_talents, r.refl_pitfalls, r.refl_talother, r.refl_sprint
+       FROM members m
+       INNER JOIN reflection r ON m.id = r.memberId
+       WHERE m.companyId = $selected_company_id";
+        $member_qualities_result = $conn->query($member_qualities_query);
+
         // Display scoring table
         echo "<h5>Scoring</h5>";
         echo "<div class='table-responsive'>";
@@ -196,6 +203,27 @@ if ($result && $result->num_rows > 0) {
             }
         } else {
             echo "<tr><td colspan='4'>No retrospective data available.</td></tr>";
+        }
+        echo "</table>";
+        echo "</div>";
+
+        // Display member qualities table
+        echo "<h5>Member Qualities</h5>";
+        echo "<div class='table-responsive'>";
+        echo "<table class='table' style='background-color: #F5F5F5;'>";
+        echo "<tr><th>Member Name</th><th>Talents</th><th>Pitfalls</th><th>Reflected by Others</th><th>Sprint</th></tr>";
+        if ($member_qualities_result && $member_qualities_result->num_rows > 0) {
+            while ($member_row = $member_qualities_result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $member_row['mem_name'] . "</td>";
+                echo "<td>" . $member_row['refl_talents'] . "</td>";
+                echo "<td>" . $member_row['refl_pitfalls'] . "</td>";
+                echo "<td>" . $member_row['refl_talother'] . "</td>";
+                echo "<td>" . $member_row['refl_sprint'] . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='4'>No member qualities data available.</td></tr>";
         }
         echo "</table>";
         echo "</div>";
