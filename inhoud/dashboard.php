@@ -104,14 +104,14 @@ if ($resultJudges->num_rows > 0) {
 $conn->close();
 ?>
 
-<div class="container">
+<div class="container-fluid graphs">
 
     <h1 class="dashboardTitle">Programme Overview</h1>
 
     <div class="row scoringGraph">
         <div class="col-md-12">
             <p class="scoringText">Scoring: Best Overall</p>
-            <canvas id="bestOverallChart"></canvas>
+            <canvas id="bestOverallChart" height="100"></canvas>
         </div>
     </div>
 
@@ -126,9 +126,12 @@ $conn->close();
         </div>
     </div>
     <div class="row scoringGraph">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <p class="scoringText">Scoring: Judges Total</p>
-            <canvas id="judgesTotalChart" width="800" height="400"></canvas>
+            <canvas id="judgesTotalChart" width="400"></canvas>
+        </div>
+        <div class="col-md-6">
+            <!-- SPACE -->
         </div>
     </div>
 

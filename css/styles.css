@@ -6,6 +6,10 @@ body {
 
 /* Nav bar */
 
+.navbar-nav {
+  padding-left: 125px;
+}
+
 .navbar-left-items li {
   display: flex;
   align-items: center;
@@ -91,6 +95,10 @@ input:-webkit-autofill:active {
   padding-left: 150px;
 }
 
+.graphs {
+  padding: 40px 150px;
+}
+
 .dashboardTitle {
   font-weight: bold;
   font-size: 34px;
@@ -128,4 +136,10 @@ tr {
 
 .companyOverviewAndSocials {
   padding-bottom: 50px;
+}
+
+/* RETROSPECTIVES */
+
+.retrospectives {
+  padding: 40px 150px;
 }
