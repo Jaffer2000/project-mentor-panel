@@ -13,19 +13,21 @@ $retrospective_query = "SELECT r.*, c.comp_name FROM retrospective r
                         JOIN company c ON r.companyId = c.id";
 $retrospective_result = $conn->query($retrospective_query);
 
-// Display retrospective table
-// Display retrospective table with a search bar
+// Display retrospective table with a search bar and add retrospective button
 echo "<div class='container-fluid retrospectives'>";
 echo "<div class='row headerAndSearchBar'>";
 echo "<div class='col-md-6'>";
 echo "<h2>Retrospective List</h2>";
 echo "</div>";
 
-echo "<div class='col-md-6'>";
-echo "<div class='search-container'>";
+echo "<div class='col-md-6' style='display: flex; justify-content: flex-end; align-items: center;'>";
+echo "<div class='search-container' style='margin-right: 10px;'>";
 echo "<input type='text' id='searchInput' onkeyup='searchTable()' placeholder='Search'>";
 echo "<i class='fas fa-search search-icon'></i>"; // Font Awesome search icon
 echo "</div>";
+echo "<button onclick='addRetrospective()' style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>";
+echo "<i class='fas fa-plus'></i> Add Retrospective";
+echo "</button>";
 echo "</div>";
 echo "</div>";
 
@@ -89,5 +91,10 @@ function searchTable() {
             }
         }
     }
+}
+
+function addRetrospective() {
+    // Redirect to addretro.php
+    window.location.href = 'inhoud/addretro.php';
 }
 </script>
