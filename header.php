@@ -12,7 +12,7 @@
                     Sprint Review
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbardrop1">
-                    <a class="dropdown-item text-dark" href="index.php?pagina=sprintscoring">Scoring</a>
+                    <a class="dropdown-item text-dark" href="index.php?pagina=scoring">Scoring</a>
                     <a class="dropdown-item text-dark" href="index.php?pagina=retrospectives">Retrospective</a>
                     <a class="dropdown-item text-dark" href="index.php?pagina=sprintselfreflection">Reflection</a>
                 </div>
