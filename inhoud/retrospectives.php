@@ -9,18 +9,33 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Fetch retrospectives
-$retrospective_query = "SELECT * FROM retrospective";
+$retrospective_query = "SELECT r.*, c.comp_name FROM retrospective r 
+                        JOIN company c ON r.companyId = c.id";
 $retrospective_result = $conn->query($retrospective_query);
 
 // Display retrospective table
+// Display retrospective table with a search bar
 echo "<div class='container-fluid retrospectives'>";
-echo "<h1>Retrospective List</h1>";
+echo "<div class='row headerAndSearchBar'>";
+echo "<div class='col-md-6'>";
+echo "<h2>Retrospective List</h2>";
+echo "</div>";
+
+echo "<div class='col-md-6'>";
+echo "<div class='search-container'>";
+echo "<input type='text' id='searchInput' onkeyup='searchTable()' placeholder='Search'>";
+echo "<i class='fas fa-search search-icon'></i>"; // Font Awesome search icon
+echo "</div>";
+echo "</div>";
+echo "</div>";
+
 echo "<div class='table-responsive'>";
-echo "<table class='table' style='background-color: #F5F5F5;'>";
-echo "<tr><th>Keep</th><th>Problem</th><th>Try</th><th>Sprint</th></tr>";
+echo "<table id='retroTable' class='table' style='background-color: #F5F5F5;'>";
+echo "<tr><th>Company Name</th><th>Keep</th><th>Problem</th><th>Try</th><th>Sprint</th></tr>";
 if ($retrospective_result && $retrospective_result->num_rows > 0) {
     while ($retrospective_row = $retrospective_result->fetch_assoc()) {
         echo "<tr>";
+        echo "<td>" . $retrospective_row['comp_name'] . "</td>";
         echo "<td>" . $retrospective_row['ret_keep'] . "</td>";
         echo "<td>" . $retrospective_row['ret_problem'] . "</td>";
         echo "<td>" . $retrospective_row['ret_try'] . "</td>";
@@ -28,8 +43,51 @@ if ($retrospective_result && $retrospective_result->num_rows > 0) {
         echo "</tr>";
     }
 } else {
-    echo "<tr><td colspan='4'>No retrospective data available.</td></tr>";
+    echo "<tr><td colspan='5'>No retrospective data available.</td></tr>";
 }
 echo "</table>";
 echo "</div>";
+
+// Count the total number of retrospectives
+$total_retrospectives_query = "SELECT COUNT(*) AS total_retrospectives FROM retrospective";
+$total_retrospectives_result = $conn->query($total_retrospectives_query);
+$total_retrospectives = ($total_retrospectives_result) ? $total_retrospectives_result->fetch_assoc()['total_retrospectives'] : 0;
+
+// Calculate the range of displayed items
+$start_range = ($total_retrospectives > 0) ? 1 : 0;
+$end_range = ($retrospective_result && $retrospective_result->num_rows > 0) ? $start_range + $retrospective_result->num_rows - 1 : 0;
+
+// Display counter
+echo "<div class='counter'>";
+echo "$start_range to $end_range of $total_retrospectives items";
 echo "</div>";
+
+echo "</div>";
+
+?>
+<script>
+function searchTable() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("retroTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (var j = 0; j < td.length; j++) {
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+}
+</script>

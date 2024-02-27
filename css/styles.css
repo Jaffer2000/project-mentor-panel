@@ -143,3 +143,41 @@ tr {
 .retrospectives {
   padding: 40px 150px;
 }
+
+.counter {
+  font-weight: bold;
+}
+
+.headerAndSearchBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 25px;
+}
+
+.search-container {
+  position: relative;
+  float: right;
+}
+
+.search-container input[type="text"] {
+  padding-left: 38px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.search-container input[type="text"]:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  transform: translateY(-50%);
+  color: #aaa;
+  z-index: 1;
+}
