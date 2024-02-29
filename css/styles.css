@@ -181,3 +181,23 @@ tr {
   color: #aaa;
   z-index: 1;
 }
+
+/* ADD RETROSPECTIVE */
+
+.addRetro {
+  padding: 40px 150px;
+}
+
+.addRetro form {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.buttonsForm {
+  padding: 15px 0;
+}
+
+.addRetroHeader {
+  padding-bottom: 25px;
+}

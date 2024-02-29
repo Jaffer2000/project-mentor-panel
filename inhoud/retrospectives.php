@@ -95,6 +95,6 @@ function searchTable() {
 
 function addRetrospective() {
     // Redirect to addretro.php
-    window.location.href = 'inhoud/addretro.php';
+    window.location.href = 'index.php?pagina=addretro';
 }
 </script>
