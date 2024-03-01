@@ -6,6 +6,11 @@ body {
 
 /* Nav bar */
 
+.navbar {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 .navbar-nav {
   padding-left: 125px;
 }
@@ -21,13 +26,22 @@ body {
   padding-right: 10px;
 }
 
+.dropdown-menu a,
+.nav-item a {
+  font-size: 15px;
+}
+
 .navbar-brand {
   border-right: 1px solid #000;
   padding-right: 10px;
 }
 
+.navrechts {
+  padding-right: 125px;
+}
+
 .no-border {
-  border-right: none !important; /* Override the border-right property */
+  border-right: none !important;
 }
 
 /* LOGIN */
