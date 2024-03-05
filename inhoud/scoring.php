@@ -25,6 +25,9 @@ $score_result = $conn->query($score_query);
             <div class='search-container'>
                 <input type='text' id='searchInput' onkeyup='searchTable()' placeholder='Search'>
                 <i class='fas fa-search search-icon'></i> <!-- Font Awesome search icon -->
+                <button onclick='addScore()' style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>
+                    <i class='fas fa-plus'></i> Add Score
+                    </button>;
             </div>
         </div>
     </div>
@@ -104,4 +107,10 @@ $score_result = $conn->query($score_query);
             }
         }
     }
+
+    function addScore() {
+    // Redirect to addretro.php
+    window.location.href = 'index.php?pagina=addscore';
+
+}
 </script>
