@@ -33,17 +33,21 @@ if ($resultScores->num_rows > 0) {
     }
 }
 
+// Sort the overall scores and labels in descending order based on scores
+arsort($companyScores);
+
 // Convert aggregated scores to labels and scores arrays for the Best Overall chart
 $overallLabels = array_keys($companyScores);
 $overallScores = array_values($companyScores);
 
-
 // Fetch data from the database for the Best Development chart
-$sqlDevelopment = "SELECT s.score_points, c.comp_name, ct.cat_type 
+$sqlDevelopment = "SELECT s.score_points, c.comp_name
                    FROM score s
                    INNER JOIN company c ON s.companyId = c.id
                    INNER JOIN category ct ON s.categoryId = ct.id
-                   WHERE ct.cat_type = 'development'";
+                   WHERE ct.cat_type = 'development'
+                   ORDER BY s.score_points DESC
+                   LIMIT 4";
 
 $resultDevelopment = $conn->query($sqlDevelopment);
 
@@ -59,12 +63,17 @@ if ($resultDevelopment->num_rows > 0) {
     }
 }
 
+// Sort the Best Development scores and labels in descending order
+array_multisort($developmentScores, SORT_DESC, $developmentLabels);
+
 // Fetch data from the database for the Best Marketing chart
-$sqlMarketing = "SELECT s.score_points, c.comp_name, ct.cat_type 
+$sqlMarketing = "SELECT s.score_points, c.comp_name
                   FROM score s
                   INNER JOIN company c ON s.companyId = c.id
                   INNER JOIN category ct ON s.categoryId = ct.id
-                  WHERE ct.cat_type = 'marketing'";
+                  WHERE ct.cat_type = 'marketing'
+                  ORDER BY s.score_points DESC
+                  LIMIT 4";
 
 $resultMarketing = $conn->query($sqlMarketing);
 
@@ -80,11 +89,16 @@ if ($resultMarketing->num_rows > 0) {
     }
 }
 
+// Sort the Best Marketing scores and labels in descending order
+array_multisort($marketingScores, SORT_DESC, $marketingLabels);
+
 // Fetch data from the database for the Judges Total chart
 $sqlJudges = "SELECT comp_name, SUM(judge_q1 + judge_q2 + judge_q3 + judge_q4 + judge_q5 + judge_q6) AS total_score
               FROM judges j
               INNER JOIN company c ON j.companyId = c.id
-              GROUP BY comp_name";
+              GROUP BY comp_name
+              ORDER BY total_score DESC
+              LIMIT 4";
 
 $resultJudges = $conn->query($sqlJudges);
 
@@ -99,6 +113,9 @@ if ($resultJudges->num_rows > 0) {
         $judgesScores[] = $row['total_score'];
     }
 }
+
+// Sort the Judges Total scores and labels in descending order
+array_multisort($judgesScores, SORT_DESC, $judgesLabels);
 
 // Close the database connection
 $conn->close();
