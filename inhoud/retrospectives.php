@@ -22,7 +22,7 @@ echo "</div>";
 
 echo "<div class='col-md-6' style='display: flex; justify-content: flex-end; align-items: center;'>";
 echo "<div class='search-container' style='margin-right: 10px;'>";
-echo "<input type='text' id='searchInput' onkeyup='searchTable()' placeholder='Search'>";
+echo "<input type='text' id='searchInput' onkeyup='searchRetroTable()' placeholder='Search'>";
 echo "<i class='fas fa-search search-icon'></i>"; // Font Awesome search icon
 echo "</div>";
 echo "<button onclick='addRetrospective()' style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>";
@@ -67,34 +67,4 @@ echo "</div>";
 echo "</div>";
 
 ?>
-<script>
-function searchTable() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("searchInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("retroTable");
-    tr = table.getElementsByTagName("tr");
-
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td");
-        for (var j = 0; j < td.length; j++) {
-            if (td[j]) {
-                txtValue = td[j].textContent || td[j].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                    break;
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-}
-
-function addRetrospective() {
-    // Redirect to addretro.php
-    window.location.href = 'inhoud/addretro.php';
-}
-</script>
+<script src="js/script.js"></script>
