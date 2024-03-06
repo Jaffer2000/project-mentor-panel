@@ -22,19 +22,20 @@ $score_result = $conn->query($score_query);
         <div class='col-md-6'>
             <h2>Score List</h2>
         </div>
-        <div class='col-md-6'>
-            <div class='search-container'>
-                <input type='text' id='searchInput' onkeyup='searchTable()' placeholder='Search'>
-                <i class='fas fa-search search-icon'></i> <!-- Font Awesome search icon -->
-                <button onclick='addScore()' style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>
-                    <i class='fas fa-plus'></i> Add Score
-                </button>
+        <div class='col-md-6' style='display: flex; justify-content: flex-end; align-items: center;'>
+            <div class='search-container' style='margin-right: 10px;'>
+                <input type='text' id='searchInput' onkeyup='searchScoringTable()' placeholder='Search'>
+                <i class='fas fa-search search-icon'></i>
             </div>
+            <button onclick='addScore()'
+                style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>
+                <i class='fas fa-plus'></i> Add score
+            </button>
         </div>
     </div>
 
     <div class='table-responsive'>
-        <table class='table' style='background-color: #F5F5F5;' id='retroTable'>
+        <table class='table' style='background-color: #F5F5F5;' id='scoringTable'>
             <tr>
                 <th>Points</th>
                 <th>Date</th>
@@ -83,37 +84,4 @@ $score_result = $conn->query($score_query);
     </div>
 </div>
 
-<script>
-function searchTable() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("searchInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("retroTable");
-    tr = table.getElementsByTagName("tr");
-
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td");
-        for (var j = 0; j < td.length; j++) {
-            if (td[j]) {
-                txtValue = td[j].textContent || td[j].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                    break;
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-}
-
-
-    function addScore() {
-        // Redirect to addretro.php
-        window.location.href = 'index.php?pagina=addscore';
-
-}
-
-</script>
+<script src="js/script.js"></script>

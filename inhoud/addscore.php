@@ -12,25 +12,36 @@ if (!isset($_SESSION['user_id'])) {
 $company_query = "SELECT * FROM company";
 $company_result = $conn->query($company_query);
 
+// Fetch categories
 $category_query = "SELECT * FROM category";
 $category_result = $conn->query($category_query);
+
+// Fetch scores
+$score_query = "SELECT * FROM score";
+$score_result = $conn->query($score_query);
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
-    $companyId = $_POST['company'];
-    $keep = $_POST['keep'];
-    $problem = $_POST['problem'];
-    $try = $_POST['try'];
-    $sprint = $_POST['sprint'];
+    $score_points = $_POST['points'];
+    $score_date = $_POST['date'];
+    $category_id = $_POST['category'];
+    $score_activity = $_POST['activity'];
+    $company_id = $_POST['company'];
+    $score_comments = $_POST['comment'];
+
+    // Performing insert query execution
+    $insert_query = "INSERT INTO score (score_points, score_date, companyId, categoryId, score_activity, score_comments)
+    VALUES ('$score_points','$score_date','$company_id','$category_id','$score_activity','$score_comments')";
 
     if ($conn->query($insert_query) === TRUE) {
-        // Redirect to Scores page
+        // Redirect to scoring page
         header('Location: index.php?pagina=scoring');
         exit();
     } else {
 
-        echo "Error: " . $insert_query . "<br>" . $conn->error;
+    echo "Error: " . $insert_query . "<br>" . $conn->error;
+    
     }
 }
 ?>
@@ -39,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row ">
         <div class='col-md-6'>
             <h2 class="addRetroHeader">Add Score</h2>
-            <form action="index.php?pagina=addscoreprocess" method="post">
+            <form action="" method="post">
                 <div class="form-group">
                     <label for="Points">Points:</label>
                     <input name="points" id="points" class="form-control" required></input>
@@ -50,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="date" name="date" id="date" class="form-control" required></input>
                 </div>
                 <div class="form-group">
-                    <label for="Category">Category:</label>
+                    <label for="category">Category:</label>
                     <select name="category" id="category" class="form-control" required>
                         <option value="">Select Category</option>
                         <?php
@@ -97,5 +108,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </div>
-
-<script>
