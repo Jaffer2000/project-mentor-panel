@@ -12,7 +12,8 @@ if (!isset($_SESSION['user_id'])) {
 $score_query = "SELECT s.score_points, s.score_date, s.companyId, s.score_activity, s.score_comments, s.categoryId, c.cat_type, co.comp_name
                 FROM score s
                 LEFT JOIN category c ON s.categoryId = c.id
-                LEFT JOIN company co ON s.companyId = co.id";
+                LEFT JOIN company co ON s.companyId = co.id
+                ORDER BY s.score_date DESC";
 $score_result = $conn->query($score_query);
 ?>
 
@@ -25,6 +26,9 @@ $score_result = $conn->query($score_query);
             <div class='search-container'>
                 <input type='text' id='searchInput' onkeyup='searchTable()' placeholder='Search'>
                 <i class='fas fa-search search-icon'></i> <!-- Font Awesome search icon -->
+                <button onclick='addScore()' style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>
+                    <i class='fas fa-plus'></i> Add Score
+                </button>
             </div>
         </div>
     </div>
@@ -104,4 +108,12 @@ function searchTable() {
         }
     }
 }
+
+
+    function addScore() {
+        // Redirect to addretro.php
+        window.location.href = 'index.php?pagina=addscore';
+
+}
+
 </script>
