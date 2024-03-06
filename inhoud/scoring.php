@@ -27,7 +27,7 @@ $score_result = $conn->query($score_query);
                 <i class='fas fa-search search-icon'></i> <!-- Font Awesome search icon -->
                 <button onclick='addScore()' style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>
                     <i class='fas fa-plus'></i> Add Score
-                    </button>;
+                </button>
             </div>
         </div>
     </div>
@@ -108,8 +108,8 @@ function searchTable() {
     }
 
     function addScore() {
-    // Redirect to addretro.php
-    window.location.href = 'index.php?pagina=addscore';
+        // Redirect to addretro.php
+        window.location.href = 'index.php?pagina=addscore';
 
 }
 }
