@@ -16,7 +16,7 @@ if (isset($_POST)) {
     // Taking all 5 values from the form data(input)
     $score_points = $_REQUEST['points'];
     $score_date = $_REQUEST['date'];
-    $category_id = $_REQUEST['catagory'];
+    $category_id = $_REQUEST['category'];
     $score_activity = $_REQUEST['activity'];
     $company_id = $_REQUEST['company'];
     $score_comments = $_REQUEST['comment'];

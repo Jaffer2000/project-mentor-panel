@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($insert_query) === TRUE) {
         // Redirect to Scores page
-        header('Location: index.php?pagina=Scores');
+        header('Location: index.php?pagina=scoring');
         exit();
     } else {
 
@@ -50,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="date" name="date" id="date" class="form-control" required></input>
                 </div>
                 <div class="form-group">
-                    <label for="Category">Catagory:</label>
-                    <select name="catagory" id="category" class="form-control" required>
-                        <option value="">Select Catagory</option>
+                    <label for="Category">Category:</label>
+                    <select name="category" id="category" class="form-control" required>
+                        <option value="">Select Category</option>
                         <?php
                         if ($category_result && $category_result->num_rows > 0) {
                             while ($company_row = $category_result->fetch_assoc()) {
@@ -84,8 +84,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <textarea name="comment" id="Comment" class="form-control" required></textarea>
                 </div>
                 <div class="buttonsForm">
-                    <a href="index.php?pagina=Scores" class="btn btn-secondary" style='padding: 8px 12px; margin-right: 5px; border-radius: 5px; background-color: #fff; color: #2F4D63; border: 1.2px #2F4D63 solid; cursor: pointer;'>Back</a>
-                    <button type="submit" class="btn btn-primary" style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>Add
+                    <a href="index.php?pagina=scoring" class="btn btn-secondary"
+                        style='padding: 8px 12px; margin-right: 5px; border-radius: 5px; background-color: #fff; color: #2F4D63; border: 1.2px #2F4D63 solid; cursor: pointer;'>Back</a>
+                    <button type="submit" class="btn btn-primary"
+                        style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>Add
                         Score</button>
                 </div>
             </form>
