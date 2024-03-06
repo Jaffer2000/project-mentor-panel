@@ -12,7 +12,8 @@ if (!isset($_SESSION['user_id'])) {
 $score_query = "SELECT s.score_points, s.score_date, s.companyId, s.score_activity, s.score_comments, s.categoryId, c.cat_type, co.comp_name
                 FROM score s
                 LEFT JOIN category c ON s.categoryId = c.id
-                LEFT JOIN company co ON s.companyId = co.id";
+                LEFT JOIN company co ON s.companyId = co.id
+                ORDER BY s.score_date DESC";
 $score_result = $conn->query($score_query);
 ?>
 
