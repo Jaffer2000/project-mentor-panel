@@ -14,7 +14,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbardrop1">
                     <a class="dropdown-item text-dark" href="index.php?pagina=scoring">Scoring</a>
                     <a class="dropdown-item text-dark" href="index.php?pagina=retrospectives">Retrospective</a>
-                    <a class="dropdown-item text-dark" href="index.php?pagina=sprintselfreflection">Reflection</a>
+                    <a class="dropdown-item text-dark" href="index.php?pagina=reflection">Reflection</a>
                 </div>
             </li>
             <li class="nav-item dropdown pr-1" onmouseover="showDropdownMenu(this)" onmouseout="hideDropdownMenu(this)">
@@ -23,12 +23,12 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbardrop2">
                     <a class="dropdown-item text-dark" href="index.php?pagina=mastercompanies">Companies</a>
-                    <a class="dropdown-item text-dark" href="index.php?pagina=masterproducts">Products</a>
-                    <a class="dropdown-item text-dark" href="index.php?pagina=mastermembers">Members</a>
+                    <a class="dropdown-item text-dark" href="index.php?pagina=products">Products</a>
+                    <a class="dropdown-item text-dark" href="index.php?pagina=members">Members</a>
                 </div>
             </li>
             <li class="nav-item pr-1">
-                <a class="nav-link text-dark" href="index.php?pagina=test">Judges</a>
+                <a class="nav-link text-dark" href="index.php?pagina=judges">Judges</a>
             </li>
         </ul>
 

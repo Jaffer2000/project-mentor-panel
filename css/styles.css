@@ -211,3 +211,9 @@ tr {
 .addRetroHeader {
   padding-bottom: 25px;
 }
+
+/* REFLECTIONS */
+
+.reflections {
+  padding: 40px 150px;
+}
