@@ -24,10 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $try = $_POST['try'];
     $sprint = $_POST['sprint'];
 
-    // Insert Score into database
-    $insert_query = "INSERT INTO score (companyId, ret_keep, ret_problem, ret_try, ret_sprint) 
-   VALUES ('$companyId', '$keep', '$problem', '$try', '$sprint')";
-
     if ($conn->query($insert_query) === TRUE) {
         // Redirect to Scores page
         header('Location: index.php?pagina=Scores');
@@ -43,18 +39,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="row ">
         <div class='col-md-6'>
             <h2 class="addRetroHeader">Add Score</h2>
-            <form action="" method="post">
+            <form action="index.php?pagina=addscoreprocess" method="post">
                 <div class="form-group">
                     <label for="Points">Points:</label>
-                    <input name="keep" id="keep" class="form-control" required></input>
+                    <input name="points" id="points" class="form-control" required></input>
+
                 </div>
                 <div class="form-group">
                     <label for="DateCaptured">Date Captured:</label>
-                    <input type="date" name="problem" id="problem" class="form-control" required></input>
+                    <input type="date" name="date" id="date" class="form-control" required></input>
                 </div>
                 <div class="form-group">
-                    <label for="try">Catagory:</label>
-                    <select name="company" id="company" class="form-control" required>
+                    <label for="Category">Catagory:</label>
+                    <select name="catagory" id="category" class="form-control" required>
                         <option value="">Select Catagory</option>
                         <?php
                         if ($category_result && $category_result->num_rows > 0) {
@@ -66,8 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="sprint">Score activity:</label>
-                    <input type="text" name="sprint" id="sprint" class="form-control" required>
+                    <label for="activity">Score activity:</label>
+                    <input type="text" name="activity" id="activity" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="company">Company:</label>
@@ -84,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label for="problem">Comments:</label>
-                    <textarea name="problem" id="problem" class="form-control" required></textarea>
+                    <textarea name="comment" id="Comment" class="form-control" required></textarea>
                 </div>
                 <div class="buttonsForm">
                     <a href="index.php?pagina=Scores" class="btn btn-secondary" style='padding: 8px 12px; margin-right: 5px; border-radius: 5px; background-color: #fff; color: #2F4D63; border: 1.2px #2F4D63 solid; cursor: pointer;'>Back</a>
@@ -94,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
         <div class='col-md-6 d-flex justify-content-center align-items-center'>
-            <img src="img/undraw_undraw_undraw_notebook_ask4_w99c_1d85" style="max-width: 70%; height: auto;" <img src="img/undraw_undraw_undraw_notebook_ask4_w99c_1d85" style="max-width: 350px; height: auto;" alt="Retro illustration">
+            <img src="img/scoreimg.jpg" style="max-width: 70%; height: auto;" alt="Score list">
         </div>
     </div>
 </div>

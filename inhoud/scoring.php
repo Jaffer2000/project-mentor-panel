@@ -106,11 +106,13 @@ function searchTable() {
             }
         }
     }
+}
+
 
     function addScore() {
         // Redirect to addretro.php
         window.location.href = 'index.php?pagina=addscore';
 
 }
-}
+
 </script>
