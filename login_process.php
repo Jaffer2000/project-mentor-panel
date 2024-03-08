@@ -52,11 +52,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: ?pagina=dashboard'); // Redirect to the dashboard page
             exit();
         } else {
+
             // Invalid username or password
-            $_SESSION['login_error'] = 'Invalid username or password';
+            $_SESSION['login_error'] = '<span style="color: red; font-weight: bold;">Invalid username or password</span>';
             header('Location: index.php'); // Redirect back to the login page
             exit();
         }
+        
+        
     } else {
         // Database error
         $_SESSION['login_error'] = 'Database error';

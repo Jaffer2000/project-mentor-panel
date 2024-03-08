@@ -10,8 +10,10 @@ if (!isset($_SESSION['user_id'])) {
 
 // Fetch reflections
 $reflection_query = "SELECT r.*, m.mem_name FROM reflection r 
-                        JOIN members m ON m.id = r.memberId";
+                        JOIN members m ON m.id = r.memberId
+                        ORDER BY id DESC";
 $reflection_result = $conn->query($reflection_query);
+
 
 // Display reflection table with a search bar and add reflection button
 echo "<div class='container-fluid reflections'>";
@@ -34,6 +36,9 @@ echo "</div>";
 echo "<div class='table-responsive'>";
 echo "<table id='reflectionTable' class='table' style='background-color: #F5F5F5;'>";
 echo "<tr><th>Member</th><th>Talents</th><th>Pitfalls</th><th>Reflected by Others</th><th>Sprint</th></tr>";
+
+$start_range = 0; // Initialize the start range outside the loop
+
 if ($reflection_result && $reflection_result->num_rows > 0) {
     while ($reflection_row = $reflection_result->fetch_assoc()) {
         echo "<tr>";
@@ -43,10 +48,13 @@ if ($reflection_result && $reflection_result->num_rows > 0) {
         echo "<td>" . $reflection_row['refl_talother'] . "</td>";
         echo "<td>" . $reflection_row['refl_sprint'] . "</td>";
         echo "</tr>";
+        $start_range++; // Increment the start range within the loop
     }
 } else {
     echo "<tr><td colspan='5'>No reflection data available.</td></tr>";
 }
+$end_range = $start_range - 1;
+
 echo "</table>";
 echo "</div>";
 
