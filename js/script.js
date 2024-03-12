@@ -46,6 +46,23 @@ function addScore() {
   window.location.href = "index.php?pagina=addscore";
 }
 
+// ADD SCORE
+
+document.addEventListener("DOMContentLoaded", function () {
+  var pointsInput = document.getElementById("points");
+
+  pointsInput.addEventListener("input", function () {
+    var pointsValue = this.value;
+    // Regular expression to allow only whole or decimal numbers
+    var regex = /^\d*\.?\d*$/;
+
+    if (!regex.test(pointsValue)) {
+      // Clear the input value if it doesn't match the regex
+      this.value = pointsValue.slice(0, -1);
+    }
+  });
+});
+
 // RETROSPECTIVES
 
 function searchRetroTable() {

@@ -29,7 +29,7 @@ $score_result = $conn->query($score_query);
             </div>
             <button onclick='addScore()'
                 style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>
-                <i class='fas fa-plus'></i> Add score
+                <i class='fas fa-plus'></i> Add Score
             </button>
         </div>
     </div>

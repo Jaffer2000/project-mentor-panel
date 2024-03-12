@@ -53,8 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form action="" method="post">
                 <div class="form-group">
                     <label for="Points">Points:</label>
-                    <input name="points" id="points" class="form-control" required></input>
-
+                    <input name="points" id="points" class="form-control" required step="0.01"></input>
                 </div>
                 <div class="form-group">
                     <label for="DateCaptured">Date Captured:</label>
@@ -108,3 +107,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </div>
+
+<script src="js/script.js"></script>
