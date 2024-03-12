@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
         <div class='col-md-6 d-flex justify-content-center align-items-center'>
-            <img src="img/undraw_team_spirit_re_yl1v.svg" style="max-width: 420px; height: auto;"
+            <img src="img/undraw_informed_decision_p2lh.svg" style="max-width: 420px; height: auto;"
                 alt="Retro illustration">
         </div>
     </div>
