@@ -95,6 +95,27 @@ function addRetrospective() {
   window.location.href = "index.php?pagina=addretro";
 }
 
+// ADD RETROSPECTIVES
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Get the "Sprint" input element
+  var sprintInput = document.getElementById('sprint');
+
+  // Add an input event listener to the "Sprint" input
+  sprintInput.addEventListener('input', function () {
+      // Remove non-numeric characters
+      this.value = this.value.replace(/[^0-9]/g, '');
+
+      // Convert the input value to an integer
+      var intValue = parseInt(this.value);
+
+      // If the input value is not NaN, update it with the rounded integer
+      if (!isNaN(intValue)) {
+          this.value = intValue;
+      }
+  });
+});
+
 // REFLECTION
 
 function searchReflectionTable() {
@@ -126,3 +147,16 @@ function addReflection() {
   // Redirect to addreflection.php
   window.location.href = "index.php?pagina=addreflection";
 }
+
+//ADD REFLECTION
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Get the "Sprint" input element
+  var sprintInput = document.getElementById('sprint');
+
+  // Add an input event listener to the "Sprint" input
+  sprintInput.addEventListener('input', function () {
+      // Remove non-numeric characters
+      this.value = this.value.replace(/[^0-9]/g, '');
+  });
+});

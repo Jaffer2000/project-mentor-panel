@@ -21,19 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $try = $_POST['try'];
     $sprint = $_POST['sprint'];
 
-   // Insert retrospective into database
-   $insert_query = "INSERT INTO retrospective (companyId, ret_keep, ret_problem, ret_try, ret_sprint) 
+    // Insert retrospective into database
+    $insert_query = "INSERT INTO retrospective (companyId, ret_keep, ret_problem, ret_try, ret_sprint) 
    VALUES ('$companyId', '$keep', '$problem', '$try', '$sprint')";
 
     if ($conn->query($insert_query) === TRUE) {
-    // Redirect to retrospectives page
-    header('Location: index.php?pagina=retrospectives');
-    exit();
-
+        // Redirect to retrospectives page
+        header('Location: index.php?pagina=retrospectives');
+        exit();
     } else {
 
-    echo "Error: " . $insert_query . "<br>" . $conn->error;
-
+        echo "Error: " . $insert_query . "<br>" . $conn->error;
     }
 }
 ?>
@@ -57,33 +55,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label for="sprint">Sprint:</label>
-                    <input type="text" name="sprint" id="sprint" class="form-control" required>
+                    <input type="number" name="sprint" id="sprint" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="company">Company:</label>
                     <select name="company" id="company" class="form-control" required>
                         <option value="">Select Company</option>
                         <?php
-                    if ($company_result && $company_result->num_rows > 0) {
-                        while ($company_row = $company_result->fetch_assoc()) {
-                            echo "<option value='" . $company_row['id'] . "'>" . $company_row['comp_name'] . "</option>";
+                        if ($company_result && $company_result->num_rows > 0) {
+                            while ($company_row = $company_result->fetch_assoc()) {
+                                echo "<option value='" . $company_row['id'] . "'>" . $company_row['comp_name'] . "</option>";
+                            }
                         }
-                    }
-                    ?>
+                        ?>
                     </select>
                 </div>
                 <div class="buttonsForm">
-                    <a href="index.php?pagina=retrospectives" class="btn btn-secondary"
-                        style='padding: 8px 12px; margin-right: 5px; border-radius: 5px; background-color: #fff; color: #2F4D63; border: 1.2px #2F4D63 solid; cursor: pointer;'>Back</a>
-                    <button type="submit" class="btn btn-primary"
-                        style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>Add
+                    <a href="index.php?pagina=retrospectives" class="btn btn-secondary" style='padding: 8px 12px; margin-right: 5px; border-radius: 5px; background-color: #fff; color: #2F4D63; border: 1.2px #2F4D63 solid; cursor: pointer;'>Back</a>
+                    <button type="submit" class="btn btn-primary" style='padding: 8px 12px; border-radius: 5px; background-color: #2F4D63; color: #fff; border: none; cursor: pointer;'>Add
                         Retrospective</button>
                 </div>
             </form>
         </div>
         <div class='col-md-6 d-flex justify-content-center align-items-center'>
-            <img src="img/undraw_undraw_undraw_notebook_ask4_w99c_1d85.svg" style="max-width: 400px; height: auto;"
-                alt="Retro illustration">
+            <img src="img/undraw_undraw_undraw_notebook_ask4_w99c_1d85.svg" style="max-width: 400px; height: auto;" alt="Retro illustration">
         </div>
     </div>
 </div>
+
+
