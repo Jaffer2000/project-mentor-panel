@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Fetch scores with category and company information
-$score_query = "SELECT s.score_points, s.score_date, s.companyId, s.score_activity, s.score_comments, s.categoryId, c.cat_type, co.comp_name
+$score_query = "SELECT s.id, s.score_points, s.score_date, s.companyId, s.score_activity, s.score_comments, s.categoryId, c.cat_type, co.comp_name
                 FROM score s
                 LEFT JOIN category c ON s.categoryId = c.id
                 LEFT JOIN company co ON s.companyId = co.id
@@ -58,6 +58,7 @@ $score_result = $conn->query($score_query);
                     echo "<td>" . $score_row['score_activity'] . "</td>";
                     echo "<td>" . $score_row['score_comments'] . "</td>";
                     echo "<td>" . $score_row['cat_type'] . "</td>";
+                    echo "<td><a href='index.php?pagina=edit_score&id=" . $score_row['id'] . "'>Edit</a></td>";
 
                     echo "</tr>";
                 }

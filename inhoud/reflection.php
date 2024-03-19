@@ -47,6 +47,7 @@ if ($reflection_result && $reflection_result->num_rows > 0) {
         echo "<td>" . $reflection_row['refl_pitfalls'] . "</td>";
         echo "<td>" . $reflection_row['refl_talother'] . "</td>";
         echo "<td>" . $reflection_row['refl_sprint'] . "</td>";
+        echo "<td><a href='index.php?pagina=edit_reflection&id=" . $reflection_row['id'] . "'>Edit</a></td>";
         echo "</tr>";
         $start_range++; // Increment the start range within the loop
     }

@@ -42,6 +42,7 @@ if ($retrospective_result && $retrospective_result->num_rows > 0) {
         echo "<td>" . $retrospective_row['ret_problem'] . "</td>";
         echo "<td>" . $retrospective_row['ret_try'] . "</td>";
         echo "<td>" . $retrospective_row['ret_sprint'] . "</td>";
+        echo "<td><a href='index.php?pagina=edit_retro&id=" . $retrospective_row['id'] . "'>Edit</a></td>";
         echo "</tr>";
     }
 } else {
