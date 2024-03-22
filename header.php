@@ -18,7 +18,7 @@
                 </div>
             </li>
             <li class="nav-item dropdown pr-1" onmouseover="showDropdownMenu(this)" onmouseout="hideDropdownMenu(this)">
-                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbardrop2">
+                <a class="nav-link dropdown-toggle text-dark" href="index.php?pagina=masterdata" id="navbardrop2">
                     Master Data
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbardrop2">
