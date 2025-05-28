@@ -11,7 +11,7 @@ $plain_password = 'test123';
 $hashed_password = password_hash($plain_password, PASSWORD_BCRYPT);
 
 // Update the user's record with the hashed password
-$username = 'jaffer';
+$username = 'test';
 $update_query = "UPDATE users SET password_hash = ? WHERE username = ?";
 
 // Use prepared statement
