@@ -8,6 +8,6 @@ My knowledge of MySQL expanded significantly during this project. I learned how 
 
 Additionally, I gained in-depth knowledge of SQL statements and operators. This includes selecting, inserting, updating, and deleting data using SQL queries. I learned how to construct more complex queries to retrieve specific information from the database.
 
-# Chart.Js
+# Chart.js
 
 This web application includes interactive charts powered by Chart.js, visualizing the scores of student groups and individual students. The charts display metrics such as development performance, communication skills, and overall progress.
